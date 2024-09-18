@@ -143,7 +143,21 @@ esac
 
 log "INFO" "识别的操作系统: $OS"
 
-# ��醒用户配置钱包地址和私钥
+# 检查并创建logs文件夹
+if [ ! -d "logs" ]; then
+    log "INFO" "正在创建logs文件夹..."
+    mkdir logs
+    if [ $? -eq 0 ]; then
+        log "INFO" "logs文件夹创建成功。"
+    else
+        log "ERROR" "创建logs文件夹失败。请检查权限。"
+        exit 1
+    fi
+else
+    log "INFO" "logs文件夹已存在。"
+fi
+
+# 提醒用户配置钱包地址和私钥
 log "WARN" "重要提醒：确保您已在 config.yaml 文件中正确配置了您的钱包地址和私钥。"
 log "INFO" "钱包地址应为0x开头的42个字符。"
 log "INFO" "私钥应为64位字符（不含0x）。"
