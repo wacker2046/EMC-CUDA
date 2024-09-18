@@ -1,0 +1,29 @@
+# 链ID，用于标识特定的区块链网络
+chain_id: 99876
+
+# RPC URL，用于连接到区块链网络的节点
+rpc_url: "https://rpc1-testnet.emc.network"
+
+# 钱包地址，用于接收挖矿奖励
+wallet_address: ""
+
+# 私钥，用于签署交易（注意：请保护好您的私钥！）
+private_key: ""
+
+# 当前挑战，用于挖矿算法的输入
+current_challenge: "0x7892556800990090000000000000000000000000000000000000000000000000"
+
+# 难度，决定了挖矿的复杂程度
+difficulty: "0x2233999900000000000000000000000000000000000000000000000000000000"
+
+# 难度长度，表示难度值的有效位数（暂时仅支持32bit长度，等于原困难长度4）
+difficulty_length: 32
+
+# 合约地址，用于提交挖矿结果
+contract_address: "0xd553C3737bC144f7e73Aa45Fa96DeD4Ee5bc30BB"
+
+# 合约 ABI，定义了与合约交互的接口
+contract_abi: [{"inputs":[{"internalType":"address payable","name":"to","type":"address"},{"internalType":"bytes32","name":"_difficulty","type":"bytes32"}],"name":"claim","outputs":[],"stateMutability":"payable","type":"function"}]
+
+# 使用的 GPU 数量
+ngpu: 1
