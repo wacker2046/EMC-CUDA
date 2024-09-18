@@ -28,12 +28,17 @@ EMC GPU 挖矿程序：基于 CUDA 的高性能并行计算实现，支持多 GP
 
 ### 安装使用步骤
 1. 从 release 页面下载包含较完整 lib 的压缩文件版本。
-   
+
+   下载后解压:
+   ```shell
+   tar -xzvf EMC-CUDA-1.0.1-linux-amd64.tar.gz
+   cd EMC-CUDA-1.0.1-linux-amd64
+   ```
    
    或者**克隆仓库**：
    ```shell
-   git clone https://github.com/emc-network/emc_cuda.git
-   cd emc_cuda
+   git clone https://github.com/wacker2046/EMC-CUDA.git
+   cd EMC-CUDA
    ```
 
 2. **修改配置文件**：
@@ -43,7 +48,7 @@ EMC GPU 挖矿程序：基于 CUDA 的高性能并行计算实现，支持多 GP
 
 3. **运行安装脚本**：
    ```shell
-   ./run.sh
+   bash ./run.sh # sh ./run.sh
    ```
 
 ### 常见问题
