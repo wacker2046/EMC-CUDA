@@ -1,5 +1,5 @@
-#!/bin/bash
-export LD_LIBRARY_PATH="$PWD/lib:$LD_LIBRARY_PATH"
+#!/bin/sh
+export LD_LIBRARY_PATH="${PWD}/lib:${LD_LIBRARY_PATH}"
 
 # 颜色定义
 RED='\033[0;31m'
@@ -10,20 +10,20 @@ NC='\033[0m' # No Color
 
 # 函数：打印彩色日志
 log() {
-    local level=$1
-    local message=$2
+    level=$1
+    message=$2
     case $level in
         "INFO")
-            echo -e "${GREEN}[INFO]${NC} $message"
+            printf "${GREEN}[INFO]${NC} %s\n" "$message"
             ;;
         "WARN")
-            echo -e "${YELLOW}[WARN]${NC} $message"
+            printf "${YELLOW}[WARN]${NC} %s\n" "$message"
             ;;
         "ERROR")
-            echo -e "${RED}[ERROR]${NC} $message"
+            printf "${RED}[ERROR]${NC} %s\n" "$message"
             ;;
         *)
-            echo -e "${BLUE}[DEBUG]${NC} $message"
+            printf "${BLUE}[DEBUG]${NC} %s\n" "$message"
             ;;
     esac
 }
@@ -114,7 +114,7 @@ fi
 case "$OSTYPE" in
     linux*|Linux*)
         log "INFO" "检测到 Linux 系统"
-        if command_exists apt-get; then
+        if command -v apt-get >/dev/null 2>&1; then
             log "DEBUG" "检测到 apt-get，可能是 Ubuntu 或 Debian"
             if [ -f /etc/debian_version ]; then
                 log "INFO" "检测到 Debian"
@@ -123,7 +123,7 @@ case "$OSTYPE" in
                 log "INFO" "检测到 Ubuntu"
                 OS="ubuntu"
             fi
-        elif command_exists yum; then
+        elif command -v yum >/dev/null 2>&1; then
             log "INFO" "检测到 CentOS"
             OS="centos"
         else
@@ -163,7 +163,8 @@ log "INFO" "钱包地址应为0x开头的42个字符。"
 log "INFO" "私钥应为64位字符（不含0x）。"
 
 while true; do
-    read -p "您是否已完成配置？(y/n): " config_done
+    printf "您是否已完成配置？(y/n): "
+    read config_done
     if [ "$config_done" = "y" ]; then
         if validate_config; then
             log "INFO" "配置验证通过。"
